@@ -1,0 +1,87 @@
+---
+title: Gestión de clientes
+subtitle: Construya relaciones duraderas con los clientes mediante un seguimiento integral de perfiles y preferencias
+slug: customer-management
+---
+
+<div id="overview">
+  ## Descripción general
+</div>
+
+Las funciones de gestión de clientes de Plant Store API te ayudan a crear y mantener relaciones con los clientes mediante perfiles detallados, preferencias e historial de compras. Úsala para crear y administrar perfiles de clientes, hacer un seguimiento del historial de pedidos, gestionar múltiples direcciones de envío, almacenar preferencias de comunicación y crear programas de fidelización.
+
+<CardGroup cols={2}>
+  <Card
+    title="Crear tu primer pedido"
+    icon="duotone book-sparkles"
+    href="/first-order-tutorial"
+  >
+    Aprende a crear clientes como parte del flujo de pedidos.
+  </Card>
+  <Card
+    title="Referencia de la API"
+    icon="duotone code"
+    href="/api-reference"
+  >
+    Explora endpoints y esquemas de clientes.
+  </Card>
+</CardGroup>
+
+<div id="customer-data-types">
+  ## Tipos de datos de clientes
+</div>
+
+Los distintos tipos de datos de clientes cumplen funciones diferentes en tu sistema.
+
+| Tipo de datos | Qué incluye | Uso principal |
+|-----------|------------------|-------------|
+| **Identidad** | Nombre, correo electrónico, teléfono, ID de cliente | Preparación de pedidos, autenticación |
+| **Preferencias** | Configuración de correo/SMS, idioma, zona horaria | Marketing, comunicación |
+| **Transaccionales** | Historial de pedidos, gasto total, devoluciones | Programas de fidelización, segmentación |
+| **Direcciones** | Varias direcciones de envío, etiquetas | Pago más rápido, envío de regalos |
+
+<Note>
+Recopila únicamente los datos que realmente vayas a utilizar. Más datos implican mayor responsabilidad y requisitos de cumplimiento. Manténlo mínimo y con un propósito claro.
+</Note>
+
+<div id="address-management">
+  ## Gestión de direcciones
+</div>
+
+Los clientes suelen enviar a múltiples ubicaciones, como su casa, la oficina o destinatarios de regalos. Admite varias direcciones guardadas con etiquetas como "Casa" o "Casa de mamá" para facilitar la selección. Valida las direcciones al ingresarlas para reducir errores de envío y permite que los clientes establezcan una dirección de envío predeterminada para agilizar el pago.
+
+<Tip>
+La validación de direcciones durante la captura evita costosos errores de envío. La mayoría de los transportistas ofrecen API gratuitas de validación de direcciones.
+</Tip>
+
+<div id="privacy-and-compliance">
+  ## Privacidad y cumplimiento
+</div>
+
+Los datos de los clientes requieren un manejo cuidadoso para mantener la confianza y cumplir con los requisitos legales. Cifra los datos sensibles en reposo y en tránsito, admite solicitudes de exportación y eliminación de datos conforme al GDPR e implementa políticas de contraseñas seguras. Registra todo acceso a los datos de los clientes para contar con trazabilidad de auditoría.
+
+| Normativa | Aplica a | Requisito clave |
+|-----------|----------|-----------------|
+| GDPR | Clientes de la UE | Derecho a acceder, exportar y eliminar datos |
+| CCPA | Clientes de California | Derecho a saber qué datos se recopilan |
+| CAN-SPAM | Marketing por correo electrónico | Baja sencilla, información precisa del remitente |
+
+Conserva los datos de los clientes solo mientras sean útiles y cumplan la normativa. Los clientes activos pueden mantenerse indefinidamente; los inactivos, durante 3–7 años; y, de las cuentas eliminadas, únicamente lo legalmente requerido para registros fiscales y de transacciones.
+
+<Warning>
+Nunca subas datos de clientes ni API keys al control de versiones. Usa variables de entorno y un gestor de secretos en su lugar.
+</Warning>
+
+<div id="customer-segmentation">
+  ## Segmentación de clientes
+</div>
+
+Agrupe a los clientes para interacciones dirigidas y experiencias personalizadas.
+
+| Segmentar por | Grupos de ejemplo | Caso de uso |
+|---------------|-------------------|-------------|
+| **Comportamiento de compra** | De alto valor, frecuentes, de una sola compra, en riesgo | Programas de fidelización, campañas de reactivación |
+| **Preferencia de producto** | Aficionados a plantas de interior, coleccionistas de suculentas | Recomendaciones de productos |
+| **Interacción** | Muy activos, moderados, inactivos | Frecuencia de correos electrónicos, reactivación |
+
+La segmentación permite un marketing más eficaz al adaptar los mensajes a los intereses de los clientes y a sus patrones de comportamiento.

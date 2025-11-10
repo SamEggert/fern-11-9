@@ -1,0 +1,28 @@
+---
+title: 29 de octubre de 2025
+slug: 10-29-2025
+tags: ["plants-api", "inventory-management", "enhancements"]
+---
+
+<div id="enhancements">
+  ## Mejoras
+</div>
+
+<div id="inventory-tracking-improvements">
+  ### Mejoras en el seguimiento del inventario
+</div>
+
+Se agregó el nuevo campo `reserved` a las respuestas de inventario, lo que permite un mejor seguimiento del stock asignado a pedidos pending.
+
+<div id="bulk-operations">
+  ### Operaciones masivas
+</div>
+
+Se incorporó el endpoint `/inventory/batch-update` para actualizar varios niveles de inventario de Plant en una sola solicitud.
+
+<div id="bug-fixes">
+  ## Correcciones de errores
+</div>
+
+- Se solucionó un problema por el cual las alertas de bajo stock no se activaban cuando el inventario alcanzaba exactamente el punto de pedido
+- Se corrigió el manejo de la zona horaria en las marcas de tiempo del historial de inventario

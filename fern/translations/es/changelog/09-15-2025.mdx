@@ -1,0 +1,46 @@
+---
+title: 15 de septiembre de 2025
+slug: 09-15-2025
+tags: ["plants-api", "search", "new-features", "plant-care"]
+---
+
+<div id="new-features">
+  ## Novedades
+</div>
+
+<div id="plant-care-requirements">
+  ### Requisitos de cuidado de la Plant
+</div>
+
+Se agregó información de cuidado detallada a los objetos de Plant:
+
+- `light_requirements` - Necesidades de luz (baja, media, luz brillante indirecta, pleno sol)
+- `water_frequency` - Recomendaciones de riego
+- `temperature_range` - Rango de temperatura ideal
+- `humidity_level` - Preferencias de humedad
+
+<div id="advanced-filtering">
+  ### Filtrado avanzado
+</div>
+
+La búsqueda de Plant ahora admite el filtrado por requisitos de cuidado:
+
+```bash
+GET /plants?care_level=easy&light_requirements=low
+```
+
+
+<div id="enhancements">
+  ## Mejoras
+</div>
+
+- Aumentamos el límite de solicitudes de 1000 a 5000 por hora para las claves de API de producción
+- Se añadieron encabezados de caché en las respuestas para mejorar el rendimiento
+- Los correos de confirmación de pedido ahora incluyen la fecha de entrega estimada
+
+<div id="bug-fixes">
+  ## Correcciones de errores
+</div>
+
+- Se solucionó un problema de paginación en el historial de pedidos de clientes
+- Se corrigieron cálculos de inventario incorrectos al cancelar pedidos

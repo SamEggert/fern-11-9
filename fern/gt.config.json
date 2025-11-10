@@ -1,0 +1,53 @@
+{
+  "locales": [
+    "es"
+  ],
+  "defaultLocale": "en",
+  "$schema": "https://assets.gtx.dev/config-schema.json",
+  "framework": "fern",
+  "files": {
+    "yaml": {
+      "include": [
+        "./en.yml"
+      ],
+      "transform": {
+        "match": "^(.*)$",
+        "replace": "translations/{locale}.yml"
+      }
+    },
+    "mdx": {
+      "include": [
+        "./**/*.mdx"
+      ],
+      "transform": {
+        "match": "^docs/(.*)$",
+        "replace": "translations/{locale}/$1"
+      },
+      "exclude": [
+        "./translations/**/*.mdx"
+      ]
+    }
+  },
+  "options": {
+    "yamlSchema": {
+      "en.yml": {
+        "include": [
+          "$.tabs.*.display-name",
+          "$.navigation[*].layout[*].section",
+          "$.navigation[*].layout[*].contents[*].page"
+        ],
+        "transform": {
+          "$.navigation[*].layout[*].contents[*].path": {
+            "match": "^docs/(.*)$",
+            "replace": "./{locale}/$1"
+          }
+        }
+      }
+    },
+    "docsUrlPattern": "/[locale]",
+    "experimentalLocalizeStaticUrls": true,
+    "docsHideDefaultLocaleImport": false,
+    "experimentalAddHeaderAnchorIds": "mintlify",
+    "experimentalClearLocaleDirs": true
+  }
+}

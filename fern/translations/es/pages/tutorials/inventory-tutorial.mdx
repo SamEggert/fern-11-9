@@ -1,0 +1,419 @@
+---
+title: Gestión del inventario de plantas
+subtitle: Aprende a realizar el seguimiento y gestionar los niveles de existencias de tus plantas
+slug: inventory-tutorial
+---
+
+Esta guía te muestra cómo gestionar tu inventario de plantas, desde añadir nuevas existencias hasta configurar alertas automáticas de reposición.
+
+<div id="building-an-inventory-management-system">
+  ## Creación de un sistema de gestión de inventarios
+</div>
+
+<Steps>
+  <Step title="Obtén tu clave de API">
+    [Crea una clave de API en tu panel](https://plantstore.com/settings/api-keys) para autenticar tus solicitudes.
+
+    ```bash title=".env"
+    PLANT_STORE_API_KEY=your_api_key_here
+    ```
+  </Step>
+
+  <Step title="Instalar el SDK">
+    <CodeBlocks>
+      ```bash Python
+      pip install plantstore-sdk
+      pip install python-dotenv
+      ```
+
+      ```bash TypeScript
+      npm install @plantstore/sdk
+      npm install dotenv
+      ```
+
+      ```bash Go
+      go get github.com/plantstore/plantstore-go
+      ```
+    </CodeBlocks>
+  </Step>
+
+  <Step title="Agregar una Plant con inventario">
+    Crea un archivo nuevo llamado `manage_inventory.py`, `manage_inventory.ts` o `main.go` con el siguiente código:
+
+    <CodeBlocks>
+      ```python Python
+      # manage_inventory.py
+      import os
+      from dotenv import load_dotenv
+      from plantstore import PlantStoreClient
+
+      load_dotenv()
+
+      client = PlantStoreClient(api_key=os.getenv("PLANT_STORE_API_KEY"))
+
+      # Añade una nueva Plant con stock inicial
+      plant = client.plants.create(
+          name="Snake Plant",
+          category="Indoor",
+          tags=["low-light", "beginner-friendly", "air-purifying"],
+          status="available",
+          stock=25,
+          price=29.99,
+          location="greenhouse_a"
+      )
+
+      print(f"Añadida Plant: {plant.name} (ID: {plant.id})")
+      print(f"Stock inicial: {plant.stock}")
+      ```
+
+      ```typescript TypeScript
+      // manage_inventory.ts
+      import { PlantStoreClient } from '@plantstore/sdk';
+      import 'dotenv/config';
+
+      const client = new PlantStoreClient({
+        apiKey: process.env.PLANT_STORE_API_KEY
+      });
+
+      async function addPlant() {
+        // Añade una nueva Plant con stock inicial
+        const plant = await client.plants.create({
+          name: 'Snake Plant',
+          category: 'Indoor',
+          tags: ['low-light', 'beginner-friendly', 'air-purifying'],
+          status: 'available',
+          stock: 25,
+          price: 29.99,
+          location: 'greenhouse_a'
+        });
+
+        console.log(`Añadida Plant: ${plant.name} (ID: ${plant.id})`);
+        console.log(`Stock inicial: ${plant.stock}`);
+      }
+
+      addPlant();
+      ```
+
+      ```go Go
+      // main.go
+      package main
+
+      import (
+          "fmt"
+          "log"
+          "os"
+
+          "github.com/joho/godotenv"
+          "github.com/plantstore/plantstore-go"
+      )
+
+      func main() {
+          godotenv.Load()
+
+          client := plantstore.NewClient(
+              plantstore.WithAPIKey(os.Getenv("PLANT_STORE_API_KEY")),
+          )
+
+          // Añade una nueva Plant con stock inicial
+          plant, err := client.Plants.Create(&plantstore.PlantCreateRequest{
+              Name:     "Snake Plant",
+              Category: "Indoor",
+              Tags:     []string{"low-light", "beginner-friendly", "air-purifying"},
+              Status:   "available",
+              Stock:    25,
+              Price:    29.99,
+              Location: "greenhouse_a",
+          })
+          if err != nil {
+              log.Fatal(err)
+          }
+
+          fmt.Printf("Añadida Plant: %s (ID: %s)\n", plant.Name, plant.ID)
+          fmt.Printf("Stock inicial: %d\n", plant.Stock)
+      }
+      ```
+    </CodeBlocks>
+  </Step>
+
+  <Step title="Consultar existencias">
+    Añade código para comprobar el estado actual del inventario:
+
+    <CodeBlocks>
+      ```python Python
+      # Comprobar el inventario de la Plant
+      inventory = client.inventory.get(plant_id=plant.id)
+
+      print(f"\nEstado del inventario:")
+      print(f"En mano: {inventory.quantity}")
+      print(f"Reservado: {inventory.reserved}")
+      print(f"Disponible: {inventory.available}")
+      print(f"Ubicación: {inventory.location}")
+      ```
+
+      ```typescript TypeScript
+      // Comprobar el inventario de la Plant
+      const inventory = await client.inventory.get({
+        plantId: plant.id
+      });
+
+      console.log('\nEstado del inventario:');
+      console.log(`En mano: ${inventory.quantity}`);
+      console.log(`Reservado: ${inventory.reserved}`);
+      console.log(`Disponible: ${inventory.available}`);
+      console.log(`Ubicación: ${inventory.location}`);
+      ```
+
+      ```go Go
+      // Comprobar el inventario de la Plant
+      inventory, err := client.Inventory.Get(&plantstore.InventoryGetRequest{
+          PlantID: plant.ID,
+      })
+      if err != nil {
+          log.Fatal(err)
+      }
+
+      fmt.Println("\nEstado del inventario:")
+      fmt.Printf("En mano: %d\n", inventory.Quantity)
+      fmt.Printf("Reservado: %d\n", inventory.Reserved)
+      fmt.Printf("Disponible: %d\n", inventory.Available)
+      fmt.Printf("Ubicación: %s\n", inventory.Location)
+      ```
+    </CodeBlocks>
+  </Step>
+
+  <Step title="Actualizar niveles de inventario">
+    Añade funcionalidad para actualizar el inventario cuando recibas nuevas entregas:
+
+    <CodeBlocks>
+      ```python Python
+      # Receive new shipment
+      updated_inventory = client.inventory.update(
+          plant_id=plant.id,
+          quantity=40,
+          note="Received shipment from supplier"
+      )
+
+      print(f"\nStock actualizado a: {updated_inventory.quantity}")
+      ```
+
+      ```typescript TypeScript
+      // Receive new shipment
+      const updatedInventory = await client.inventory.update({
+        plantId: plant.id,
+        quantity: 40,
+        note: 'Received shipment from supplier'
+      });
+
+      console.log(`\nStock actualizado a: ${updatedInventory.quantity}`);
+      ```
+
+      ```go Go
+      // Receive new shipment
+      updatedInventory, err := client.Inventory.Update(&plantstore.InventoryUpdateRequest{
+          PlantID:  plant.ID,
+          Quantity: 40,
+          Note:     "Received shipment from supplier",
+      })
+      if err != nil {
+          log.Fatal(err)
+      }
+
+      fmt.Printf("\nStock actualizado a: %d\n", updatedInventory.Quantity)
+      ```
+    </CodeBlocks>
+  </Step>
+
+  <Step title="Configurar alertas de poco inventario">
+    Configura alertas automáticas cuando el inventario esté bajo:
+
+    <CodeBlocks>
+      ```python Python
+      # Configurar alerta de bajo inventario
+      alert = client.inventory.set_alert(
+          plant_id=plant.id,
+          reorder_point=10,
+          notify_email="inventory@plantstore.com"
+      )
+
+      print(f"\nAlerta de bajo inventario configurada: {alert.reorder_point} unidades")
+      ```
+
+      ```typescript TypeScript
+      // Configurar alerta de bajo inventario
+      const alert = await client.inventory.setAlert({
+        plantId: plant.id,
+        reorderPoint: 10,
+        notifyEmail: 'inventory@plantstore.com'
+      });
+
+      console.log(`\nAlerta de bajo inventario configurada: ${alert.reorderPoint} unidades`);
+      ```
+
+      ```go Go
+      // Configurar alerta de bajo inventario
+      alert, err := client.Inventory.SetAlert(&plantstore.InventoryAlertRequest{
+          PlantID:      plant.ID,
+          ReorderPoint: 10,
+          NotifyEmail:  "inventory@plantstore.com",
+      })
+      if err != nil {
+          log.Fatal(err)
+      }
+
+      fmt.Printf("\nAlerta de bajo inventario configurada: %d unidades\n", alert.ReorderPoint)
+      ```
+    </CodeBlocks>
+  </Step>
+
+  <Step title="Reservar inventario para órdenes">
+    Demuestra cómo reservar existencias al procesar pedidos:
+
+    <CodeBlocks>
+      ```python Python
+      # Reservar existencias para un pedido
+      reservation = client.inventory.reserve(
+          plant_id=plant.id,
+          quantity=2,
+          order_id="order_123",
+          expires_at="2025-11-01T10:00:00Z"
+      )
+
+      print(f"\nSe reservaron {reservation.quantity} unidades para el pedido {reservation.order_id}")
+
+      # Verificar el inventario actualizado
+      updated = client.inventory.get(plant_id=plant.id)
+      print(f"Reservado: {updated.reserved}, Disponible: {updated.available}")
+      ```
+
+      ```typescript TypeScript
+      // Reservar existencias para un pedido
+      const reservation = await client.inventory.reserve({
+        plantId: plant.id,
+        quantity: 2,
+        orderId: 'order_123',
+        expiresAt: '2025-11-01T10:00:00Z'
+      });
+
+      console.log(`\nSe reservaron ${reservation.quantity} unidades para el pedido ${reservation.orderId}`);
+
+      // Verificar el inventario actualizado
+      const updated = await client.inventory.get({ plantId: plant.id });
+      console.log(`Reservado: ${updated.reserved}, Disponible: ${updated.available}`);
+      ```
+
+      ```go Go
+      // Reservar existencias para un pedido
+      reservation, err := client.Inventory.Reserve(&plantstore.InventoryReserveRequest{
+          PlantID:   plant.ID,
+          Quantity:  2,
+          OrderID:   "order_123",
+          ExpiresAt: "2025-11-01T10:00:00Z",
+      })
+      if err != nil {
+          log.Fatal(err)
+      }
+
+      fmt.Printf("\nSe reservaron %d unidades para el pedido %s\n", reservation.Quantity, reservation.OrderID)
+
+      // Verificar el inventario actualizado
+      updated, err := client.Inventory.Get(&plantstore.InventoryGetRequest{
+          PlantID: plant.ID,
+      })
+      if err != nil {
+          log.Fatal(err)
+      }
+      fmt.Printf("Reservado: %d, Disponible: %d\n", updated.Reserved, updated.Available)
+      ```
+    </CodeBlocks>
+  </Step>
+
+  <Step title="Ejecute el código">
+    <CodeBlocks>
+      ```bash Python
+      python manage_inventory.py
+      ```
+
+      ```bash TypeScript
+      npx tsx manage_inventory.ts
+      ```
+
+      ```bash Go
+      go run main.go
+      ```
+    </CodeBlocks>
+
+    Deberías ver una salida que muestre:
+
+    * Creación de Plant con stock inicial
+    * Estado actual del inventario
+    * Actualizaciones de stock por envíos
+    * Configuración de alertas
+    * Reserva de stock para pedidos
+  </Step>
+</Steps>
+
+<Accordion title="Automatización avanzada">
+
+<div id="batch-inventory-updates">
+  ### Actualizaciones de inventario por lotes
+</div>
+
+Para procesar envíos grandes, usa actualizaciones por lotes:
+
+<CodeBlocks>
+```python Python
+# Actualiza varias plantas a la vez
+batch_result = client.inventory.batch_update(
+    updates=[
+        {"plant_id": "plant_123", "quantity": 30},
+        {"plant_id": "plant_456", "quantity": 15},
+        {"plant_id": "plant_789", "quantity": 22}
+    ]
+)
+print(f"Se actualizaron {len(batch_result.updated)} plantas")
+```
+
+```typescript TypeScript
+// Actualiza varias plantas a la vez
+const batchResult = await client.inventory.batchUpdate({
+  updates: [
+    { plantId: 'plant_123', quantity: 30 },
+    { plantId: 'plant_456', quantity: 15 },
+    { plantId: 'plant_789', quantity: 22 }
+  ]
+});
+console.log(`Se actualizaron ${batchResult.updated.length} plantas`);
+```
+</CodeBlocks>
+
+<div id="inventory-history-tracking">
+  ### Seguimiento del historial de inventario
+</div>
+
+Consulta todos los cambios para comprender los patrones de inventario:
+
+<CodeBlocks>
+```python Python
+# Obtener el historial de inventario
+history = client.inventory.get_history(
+    plant_id=plant.id,
+    limit=10
+)
+
+for event in history:
+    print(f"{event.timestamp}: {event.change:+d} unidades - {event.reason}")
+```
+
+```typescript TypeScript
+// Obtener el historial de inventario
+const history = await client.inventory.getHistory({
+  plantId: plant.id,
+  limit: 10
+});
+
+history.forEach(event => {
+  console.log(`${event.timestamp}: ${event.change:+d} unidades - ${event.reason}`);
+});
+```
+</CodeBlocks>
+</Accordion>

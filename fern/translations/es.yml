@@ -1,0 +1,58 @@
+tabs:
+  home:
+    display-name: Docs
+    icon: home
+  guides:
+    display-name: Guías
+    icon: book
+  API Reference:
+    display-name: Referencia de API
+    icon: puzzle
+navigation:
+  - tab: home
+    layout:
+      - section: Primeros pasos
+        contents:
+          - page: Bienvenida
+            path: ./es/pages/welcome.mdx
+  - tab: guides
+    layout:
+      - section: Primeros pasos
+        contents:
+          - page: Resumen
+            path: ./es/pages/get-started/overview.mdx
+            icon: fa-duotone fa-book-open
+          - page: Inicio rápido
+            path: ./es/pages/get-started/quickstart.mdx
+            icon: fa-duotone fa-rocket
+      - section: Funciones
+        contents:
+          - page: Gestión de Plant
+            path: ./es/pages/capabilities/plant-management.mdx
+            icon: fa-duotone fa-seedling
+          - page: Procesamiento de pedidos
+            path: ./es/pages/capabilities/order-processing.mdx
+            icon: fa-duotone fa-cart-shopping
+          - page: Administración de clientes
+            path: ./es/pages/capabilities/customer-management.mdx
+            icon: fa-duotone fa-users
+          - page: Seguimiento del inventario
+            path: ./es/pages/capabilities/inventory-tracking.mdx
+            icon: fa-duotone fa-boxes-stacked
+      - section: Tutoriales
+        contents:
+          - page: Búsqueda de Plants
+            path: ./es/pages/tutorials/searching-plants.mdx
+            icon: fa-duotone fa-magnifying-glass
+          - page: Creación de su primer pedido
+            path: ./es/pages/tutorials/first-order-tutorial.mdx
+            icon: fa-duotone fa-bag-shopping
+          - page: Gestión del inventario de plantas
+            path: ./es/pages/tutorials/inventory-tutorial.mdx
+            icon: fa-duotone fa-clipboard-list
+      - section: Registro de cambios
+        contents:
+          - changelog: docs/changelog
+  - tab: API Reference
+    layout:
+      - api: API Reference
