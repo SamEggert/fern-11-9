@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "entries": {
+    "70b6d8c05d3dccd60adffb2d6b287221870c21ec6ef66b0600a6fc2e59bb3427:es": {
+      "versionId": "99a62520dd437230becfba188ed1a10d2b339f3e4f8dccaa14fe24c6372f6748",
+      "fileId": "70b6d8c05d3dccd60adffb2d6b287221870c21ec6ef66b0600a6fc2e59bb3427",
+      "fileName": "en.yml",
+      "updatedAt": "2025-11-10T05:37:14.534Z"
+    },
+    "73c27f38dffb5c3e1ebc8d2b11b64a10d49f7efd0284676618b58f426ff159b5:es": {
+      "versionId": "aaba6e5187f945b368d6f891a50744a3b463359d8eaa73564b4ab623fe09c59b",
+      "fileId": "73c27f38dffb5c3e1ebc8d2b11b64a10d49f7efd0284676618b58f426ff159b5",
+      "fileName": "docs/changelog/10-29-2025.mdx",
+      "updatedAt": "2025-11-10T05:37:14.536Z"
+    },
+    "9efdc2d89dc970bb2177e7a43957e78f8db62dcab5431d91488b467f9d0338e1:es": {
+      "versionId": "eb05c4f25bc0da1a4ac53ed9698a153a0931a869fcd51441d86f518f23efd0a7",
+      "fileId": "9efdc2d89dc970bb2177e7a43957e78f8db62dcab5431d91488b467f9d0338e1",
+      "fileName": "docs/changelog/09-15-2025.mdx",
+      "updatedAt": "2025-11-10T05:37:19.550Z"
+    },
+    "29a9e689d5dc66c172cf45249d24a8ff4b97cb04c5054c9f09c05f9f9e90a73c:es": {
+      "versionId": "3a636d387b5142d54920f21d2b60ee12c60831990133e2d7cd4ca123178ecc21",
+      "fileId": "29a9e689d5dc66c172cf45249d24a8ff4b97cb04c5054c9f09c05f9f9e90a73c",
+      "fileName": "docs/pages/sdks.mdx",
+      "updatedAt": "2025-11-10T05:37:19.550Z"
+    },
+    "6d0e9754d64f427df6a4617e0eb5f6304eac243d38c0ab20d789cf55e89cf7a3:es": {
+      "versionId": "b18e7b3652bd2da0b5434eb8b3d9b4474ca5422b9375350c458ad687421e93ee",
+      "fileId": "6d0e9754d64f427df6a4617e0eb5f6304eac243d38c0ab20d789cf55e89cf7a3",
+      "fileName": "docs/pages/capabilities/customer-management.mdx",
+      "updatedAt": "2025-11-10T05:37:19.551Z"
+    },
+    "9e695bcbf051af9e62c2c2a9096382a903e999229e7a93ca82c82c1c04389f4a:es": {
+      "versionId": "bc518e352b9a6003ab68be2c0227ec4fc6025f21fea32d804e6ba60b1e33e3e8",
+      "fileId": "9e695bcbf051af9e62c2c2a9096382a903e999229e7a93ca82c82c1c04389f4a",
+      "fileName": "docs/pages/capabilities/inventory-tracking.mdx",
+      "updatedAt": "2025-11-10T05:37:19.552Z"
+    },
+    "2e2ab4fb6332b53742dd9ac2595fe0fcc4c0fc7cca9553465ea5e6af08e064a7:es": {
+      "versionId": "ea9d0032c8a3635259a31f8c3c088fae1cf0fb04ebec7cc6d4ca411c0e0c3164",
+      "fileId": "2e2ab4fb6332b53742dd9ac2595fe0fcc4c0fc7cca9553465ea5e6af08e064a7",
+      "fileName": "snippets/note.mdx",
+      "updatedAt": "2025-11-10T05:37:24.568Z"
+    },
+    "88aa2ba03dda791b6de570cde600dfb70f5134e46de7c9ccbda25f290867e239:es": {
+      "versionId": "45837f78a75fdd3b0f0ab0239407333901c6aeeafe4aa048bcf312681550a0e4",
+      "fileId": "88aa2ba03dda791b6de570cde600dfb70f5134e46de7c9ccbda25f290867e239",
+      "fileName": "docs/changelog/09-01-2025.mdx",
+      "updatedAt": "2025-11-10T05:37:24.569Z"
+    },
+    "95f630ab4061b112f748cbd0d52fde7f6410ba4de341ac88f8ecfeba07e94974:es": {
+      "versionId": "35c8f14fcde0e9435493674f65c24714f26a453b52804b9c3c643528b2826c12",
+      "fileId": "95f630ab4061b112f748cbd0d52fde7f6410ba4de341ac88f8ecfeba07e94974",
+      "fileName": "docs/changelog/10-01-2025.mdx",
+      "updatedAt": "2025-11-10T05:37:24.570Z"
+    },
+    "191d268eb8ddbfcfa722a038fc75be6e7483dd64d3937d6ce8bb31f54d02b04c:es": {
+      "versionId": "678053c40501cd3c68db7770ee4ef5eda7762eef8603706e0b6b02125f910cf0",
+      "fileId": "191d268eb8ddbfcfa722a038fc75be6e7483dd64d3937d6ce8bb31f54d02b04c",
+      "fileName": "docs/changelog/10-15-2025.mdx",
+      "updatedAt": "2025-11-10T05:37:24.570Z"
+    },
+    "54b3e3ec8eaa0996571be625305ef6b0c999895ad3fb80390632bd6b829511d0:es": {
+      "versionId": "d969529eee7ce92de661f07140255782089aa10f8c17eaf0bf092e74d094f304",
+      "fileId": "54b3e3ec8eaa0996571be625305ef6b0c999895ad3fb80390632bd6b829511d0",
+      "fileName": "docs/pages/concepts.mdx",
+      "updatedAt": "2025-11-10T05:37:24.571Z"
+    },
+    "afe29248b2b1cff61bb375e0690fba1ebb7d85c0ca361fb3f64b2f8dc6330334:es": {
+      "versionId": "5369c848535f5c110bd99c6f84f1ae96014cd07c01e9b462863b34de583f649f",
+      "fileId": "afe29248b2b1cff61bb375e0690fba1ebb7d85c0ca361fb3f64b2f8dc6330334",
+      "fileName": "docs/pages/welcome.mdx",
+      "updatedAt": "2025-11-10T05:37:24.571Z"
+    },
+    "4667b2f99aca168c88ad76d82eb6eacec9a5dd7d63475f85663074b36f1ef36e:es": {
+      "versionId": "90f90e239235f46e0219c53330a33549b071a355a95ed4c3086146aaebd50a05",
+      "fileId": "4667b2f99aca168c88ad76d82eb6eacec9a5dd7d63475f85663074b36f1ef36e",
+      "fileName": "docs/pages/capabilities/order-processing.mdx",
+      "updatedAt": "2025-11-10T05:37:24.572Z"
+    },
+    "9e925d1f2d733a642be45716b7ff508117a4f668a1a69afcc26fdccfa501a764:es": {
+      "versionId": "fc17a9aeb08515dbc4f8bd2d8e344902a309d7c409e686e6180e4e661106159f",
+      "fileId": "9e925d1f2d733a642be45716b7ff508117a4f668a1a69afcc26fdccfa501a764",
+      "fileName": "docs/pages/capabilities/plant-management.mdx",
+      "updatedAt": "2025-11-10T05:37:24.572Z"
+    },
+    "f13a7b301914c1dccbe3919a0c366478987f785d283e6c8c06c6113ab9949826:es": {
+      "versionId": "b088b1479fe197c43ec3a9b6df818e9ddd66b92d7b03364571828436ac493d5a",
+      "fileId": "f13a7b301914c1dccbe3919a0c366478987f785d283e6c8c06c6113ab9949826",
+      "fileName": "docs/pages/tutorials/first-order-tutorial.mdx",
+      "updatedAt": "2025-11-10T05:37:29.504Z"
+    },
+    "a7e3d06f435b33ff56a08521960a304a8545b9bb4dc62193776ac305253143ff:es": {
+      "versionId": "1af445a3e0b77903debc3483594b6282993089eddaf4a6b8461a833522cabc6b",
+      "fileId": "a7e3d06f435b33ff56a08521960a304a8545b9bb4dc62193776ac305253143ff",
+      "fileName": "docs/pages/light.mdx",
+      "updatedAt": "2025-11-10T05:37:34.548Z"
+    },
+    "f287cba11e79225e4093f8fa6e3a4d1dca0d3317a150925a398bc5d9f88fb50e:es": {
+      "versionId": "aa14298d10edf007545569292c66949933b72671a82e4619a44a57f2fb2a6abf",
+      "fileId": "f287cba11e79225e4093f8fa6e3a4d1dca0d3317a150925a398bc5d9f88fb50e",
+      "fileName": "docs/pages/tutorials/inventory-tutorial.mdx",
+      "updatedAt": "2025-11-10T05:37:34.548Z"
+    },
+    "d8988c73f56ed220e851f12bca2d0d43b49bae3c785548abac3700ad2349838e:es": {
+      "versionId": "dc009fb73788c1afec2f43a826d03a179a71eded3852af94b8cda64c945ed4b5",
+      "fileId": "d8988c73f56ed220e851f12bca2d0d43b49bae3c785548abac3700ad2349838e",
+      "fileName": "docs/pages/get-started/overview.mdx",
+      "updatedAt": "2025-11-10T05:37:39.522Z"
+    },
+    "f10b8599a14a3cf6a3db1df237c877e0c268d2bc4e00194bc01bc5e84f3589fd:es": {
+      "versionId": "bfe1e659ca802d0e2ba53839936038b583e40a8c48b94e418bbfa4859239ea43",
+      "fileId": "f10b8599a14a3cf6a3db1df237c877e0c268d2bc4e00194bc01bc5e84f3589fd",
+      "fileName": "docs/pages/get-started/quickstart.mdx",
+      "updatedAt": "2025-11-10T05:37:39.523Z"
+    },
+    "5e6086706efb52cee5a0f6989e064a50a61739e2e05b3cc30240059a00c19096:es": {
+      "versionId": "d60b37795dd8d5e2b8342859f9bdb2ffe192e1847006bf5c3ce077055dad58f0",
+      "fileId": "5e6086706efb52cee5a0f6989e064a50a61739e2e05b3cc30240059a00c19096",
+      "fileName": "docs/pages/tutorials/searching-plants.mdx",
+      "updatedAt": "2025-11-10T05:37:39.523Z"
+    }
+  }
+}

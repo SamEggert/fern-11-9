@@ -1,0 +1,77 @@
+---
+title: Gestión de Plant
+subtitle: Organiza y mantén tu catálogo de Plant con categorización y búsqueda flexibles
+slug: plant-management
+---
+
+<div id="overview">
+  ## Descripción general
+</div>
+
+Las capacidades de gestión de plantas de la Plant Store API te permiten crear, organizar y mantener tu catálogo de Plant con metadatos enriquecidos y categorización flexible. Úsala para crear y actualizar publicaciones de Plant, organizar por categorías y etiquetas, controlar el estado de disponibilidad y buscar y filtrar para clientes y operaciones internas.
+
+<CardGroup cols={2}>
+  <Card
+    title="Búsqueda de plantas"
+    icon="duotone book-sparkles"
+    href="/searching-plants"
+  >
+    Aprende a buscar y filtrar tu catálogo de Plant.
+  </Card>
+  <Card
+    title="Referencia de la API"
+    icon="duotone code"
+    href="/api-reference/plant/addPlant"
+  >
+    Explora los endpoints y esquemas de gestión de Plant.
+  </Card>
+</CardGroup>
+
+<div id="plant-status-values">
+  ## Valores de estado de Plant
+</div>
+
+Las Plant de tu catálogo tienen estados de disponibilidad que reflejan el inventario. El estado debe sincronizarse automáticamente con los niveles de inventario para evitar la sobreventa.
+
+| Estado | Cuándo usarlo |
+|--------|----------------|
+| `available` | En stock y listo para comprar |
+| `pending` | Reservado para pedidos o envíos entrantes |
+| `sold` | Ya no disponible para nuevos pedidos |
+
+<Warning>
+Actualiza siempre el estado de la Plant cuando cambie el inventario. Los valores de estado desactualizados provocan sobreventa y decepción de los clientes.
+</Warning>
+
+<div id="categorization-strategies">
+  ## Estrategias de categorización
+</div>
+
+Organiza las Plantas para ayudar a los clientes a encontrar lo que necesitan. La mayoría de las tiendas de plantas exitosas utilizan varios métodos de categorización de forma simultánea.
+
+| Estrategia | Categorías | Caso de uso de ejemplo |
+|----------|-----------|------------------|
+| **Dificultad de cuidados** | Fácil, Moderado, Avanzado | Ayuda a principiantes a encontrar plantas de bajo mantenimiento |
+| **Entorno** | Interior, Exterior, Tropical, Desértico | Ajusta las plantas al espacio del cliente |
+| **Tamaño** | Pequeño, Mediano, Grande | Filtra según las restricciones de espacio disponible |
+
+Usa categorías para agrupaciones amplias (opciones mutuamente excluyentes como Interior vs. Exterior) y etiquetas para rótulos flexibles y superpuestos como “apto para mascotas”, “purificadora de aire” o “poca luz”. Este enfoque dual ofrece a los clientes la máxima flexibilidad al explorar.
+
+<Tip>
+Incluye los nombres científicos junto con los nombres comunes. Muchos entusiastas experimentados de las plantas buscan por nombres científicos, y ayuda a diferenciar entre nombres comunes similares.
+</Tip>
+
+<div id="handling-variants">
+  ## Manejo de variantes
+</div>
+
+Los diferentes tamaños de maceta o colores de la misma Planta deben gestionarse por separado para fines de precios e inventario. Crea registros de Planta independientes para cada variante y vincúlalos usando etiquetas o convenciones de nomenclatura consistentes. Por ejemplo, "Sansevieria - 4 pulgadas" y "Sansevieria - 6 pulgadas" como SKUs distintos.
+
+| Enfoque | Ventajas | Desventajas |
+|----------|----------|-------------|
+| Productos separados | Precios e inventario independientes | Más registros que administrar |
+| Producto único con variantes | Catálogo más ordenado | Seguimiento de inventario más complejo |
+
+<Note>
+La mayoría de las Tiendas de plantas consideran que los productos separados son más sencillos de implementar y más flexibles para ajustar precios.
+</Note>

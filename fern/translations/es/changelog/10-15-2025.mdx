@@ -1,0 +1,32 @@
+---
+title: 15 de octubre de 2025
+slug: 10-15-2025
+tags: ["plants-api", "webhooks", "inventory-management", "new-features"]
+---
+
+<div id="new-features">
+  ## Nuevas funciones
+</div>
+
+<div id="webhook-events">
+  ### Eventos de webhook
+</div>
+
+Se añadió compatibilidad con nuevos eventos de webhook:
+
+- `inventory.low_stock` - Se activa cuando el inventario cae por debajo del punto de reorden
+- `inventory.restocked` - Se activa cuando se reabastecen los artículos
+- `customer.updated` - Se activa cuando se modifica el perfil del cliente
+
+<div id="multi-location-inventory">
+  ### Inventario en múltiples ubicaciones
+</div>
+
+Los endpoints de inventario ahora admiten el parámetro `location` para realizar el seguimiento del stock en múltiples almacenes e invernaderos.
+
+<div id="enhancements">
+  ## Mejoras
+</div>
+
+- Mejora de la lógica de reintentos de webhook con backoff exponencial
+- Se añadieron los campos `tracking_number` y `carrier` a las respuestas de pedidos

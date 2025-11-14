@@ -1,0 +1,105 @@
+---
+title: Seguimiento de inventario
+subtitle: Supervisa los niveles de existencias de Plant en tiempo real con alertas y reservas automatizadas
+slug: inventory-tracking
+---
+
+<div id="overview">
+  ## Descripción general
+</div>
+
+Las capacidades de seguimiento de inventario de la Plant Store API te ayudan a mantener niveles de stock precisos y evitar la sobreventa. Úsala para seguir cantidades en existencia, reservadas y disponibles; reservar inventario cuando se realizan pedidos; configurar alertas automáticas por bajo stock; ver el historial de inventario y las pistas de auditoría; y gestionar stock en múltiples ubicaciones.
+
+<CardGroup cols={2}>
+  <Card
+    title="Gestión del inventario de plantas"
+    icon="duotone book-sparkles"
+    href="/inventory-tutorial"
+  >
+    Aprende a seguir y actualizar tu stock de plantas.
+  </Card>
+  <Card
+    title="Referencia de la API"
+    icon="duotone code"
+    href="/api-reference"
+  >
+    Explora endpoints y esquemas de inventario.
+  </Card>
+</CardGroup>
+
+<div id="inventory-states">
+  ## Estados de inventario
+</div>
+
+El inventario no es solo un número. Las Plant existen en diferentes estados a lo largo del proceso de pedido y cumplimiento.
+
+| Estado | Definición | Fórmula |
+|-------|------------|---------|
+| **En mano** | Conteo físico en tu poder | Conteo real del almacén |
+| **Reservado** | Comprometido con pedidos pending | Suma de reservas de pedidos activos |
+| **Disponible** | Stock disponible para nuevos pedidos | En mano - Reservado - Dañado |
+| **En tránsito** | Pedido a proveedores, aún no recibido | Órdenes de compra activas |
+
+<Warning>
+Actualiza el inventario en tiempo real, no por lotes. Los retrasos entre la creación del pedido y las actualizaciones de inventario provocan sobreventa.
+</Warning>
+
+<div id="reservation-strategy">
+  ## Estrategia de reservas
+</div>
+
+Reserva el inventario cuando se crea un pedido (no solo cuando se paga) para evitar que dos clientes compren simultáneamente la última planta. Establece tiempos de vencimiento para los pedidos no pagados —normalmente 15‑30 minutos— y libera automáticamente las reservas si el pago falla o vence. Convierte las reservas en deducciones permanentes cuando se envíe el pedido.
+
+<Tip>
+La mayoría de los procesadores de pago completan la compra en 15 minutos. Establecer el vencimiento de la reserva en 15‑30 minutos equilibra la prevención de sobreventas con no retener inventario innecesariamente.
+</Tip>
+
+<div id="low-stock-alerts">
+  ## Alertas por bajo inventario
+</div>
+
+Define puntos de reorden según el tiempo de entrega del proveedor y la velocidad de ventas para evitar quedarte sin las plantas más populares.
+
+**Fórmula del punto de reorden:** `(Tiempo de entrega en días × Ventas diarias) + Stock de seguridad`
+
+| Componente | Ejemplo | Propósito |
+|-----------|---------|---------|
+| Tiempo de entrega | 7 días | Tiempo para recibir nuevo inventario del proveedor |
+| Ventas diarias | 2 plantas/día | Velocidad promedio de ventas |
+| Stock de seguridad | 5 plantas | Margen para picos de demanda o retrasos |
+| **Punto de reorden** | **19 plantas** | Alerta cuando el inventario cae por debajo de este valor |
+
+Automatiza las notificaciones de reorden por correo electrónico o webhook cuando el inventario caiga por debajo del punto de reorden. Haz seguimiento de los tiempos de entrega de los proveedores a lo largo del tiempo y ajusta los puntos de reorden en función de las variaciones estacionales o cambios en la cadena de suministro.
+
+<div id="accuracy-and-auditing">
+  ## Exactitud y auditoría
+</div>
+
+Mantén la exactitud del inventario mediante conteos físicos regulares y registros de auditoría completos. Usa el conteo cíclico: cuenta una sección diferente cada semana en lugar de todo de una vez. Los artículos de alto valor o de alta rotación deben contarse semanalmente, mientras que los de baja rotación pueden contarse de forma trimestral.
+
+Registra todos los cambios en el inventario con marcas de tiempo, motivos y el usuario que realizó el cambio. Esto crea un rastro de auditoría para resolver discrepancias y prevenir fraudes.
+
+| Tipo de cambio | Código de motivo | ¿Requiere aprobación? |
+|----------------|------------------|------------------------|
+| Stock recibido | `shipment_received` | No |
+| Pedido enviado | `order_fulfilled` | No |
+| Mercancía dañada | `shrinkage_damaged` | Aprobación del gerente |
+| Ajuste manual | `count_correction` | Aprobación del gerente |
+
+<Note>
+Las Plants son más complejas que la mayoría del inventario debido a su perecibilidad, crecimiento y variación de calidad. Los conteos físicos regulares detectan problemas antes de que afecten a los clientes.
+</Note>
+
+<div id="multi-location-inventory">
+  ## Inventario en múltiples ubicaciones
+</div>
+
+Para operaciones con varios invernaderos, almacenes o tiendas, elige una estrategia que equilibre la complejidad y la velocidad de entrega.
+
+| Estrategia | Ideal para | Consideraciones |
+|----------|----------|------------|
+| **Centralizada** | Operaciones pequeñas, artículos especializados | Gestión más simple, envío más lento o costoso |
+| **Distribuida** | Operaciones grandes, necesidad de entrega rápida | Entrega más rápida, gestión más compleja |
+| **Híbrida** | La mayoría de las operaciones | Artículos populares en todas partes; artículos especializados centralizados |
+
+Dirige los pedidos a la ubicación óptima según la proximidad al cliente, la disponibilidad actual de inventario y los costos de envío. Permite transferencias entre ubicaciones para equilibrar el inventario entre instalaciones.

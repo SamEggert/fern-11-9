@@ -1,0 +1,47 @@
+---
+title: 1 de octubre de 2025
+slug: 10-01-2025
+tags: ["plants-api", "breaking-change", "customers", "orders"]
+---
+
+<div id="new-features">
+  ## Novedades
+</div>
+
+<div id="customer-loyalty-program">
+  ### Programa de fidelización de clientes
+</div>
+
+Se introdujo el nuevo endpoint `/customers/{id}/loyalty` para acceder a los puntos y recompensas de fidelización de los clientes.
+
+<div id="wishlist-functionality">
+  ### Funcionalidad de lista de deseos
+</div>
+
+Los clientes ahora pueden gestionar listas de deseos:
+
+- `POST /customers/{id}/wishlist` - Agregar Plant a la lista de deseos
+- `GET /customers/{id}/wishlist` - Obtener la lista de deseos
+- `DELETE /customers/{id}/wishlist/{plant_id}` - Eliminar de la lista de deseos
+
+<div id="breaking-changes">
+  ## Cambios importantes
+</div>
+
+<div id="order-status-field">
+  ### Campo de estado del pedido
+</div>
+
+El campo `status` del pedido ahora utiliza valores estandarizados. Los valores de estado anteriores se desaprobarán el 1 de diciembre de 2025:
+
+- `pending_payment` → `pending`
+- `in_progress` → `processing`
+
+Actualiza tus integraciones para usar los nuevos valores.
+
+<div id="enhancements">
+  ## Mejoras
+</div>
+
+- Se añadió soporte de paginación al endpoint `/plants` con los parámetros `limit` y `offset`
+- Se mejoraron los mensajes de error con comentarios de validación más detallados

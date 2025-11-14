@@ -1,0 +1,41 @@
+---
+title: 1 de septiembre de 2025
+slug: 09-01-2025
+tags: ["plants-api", "orders", "webhooks", "security"]
+---
+
+<div id="new-features">
+  ## Novedades
+</div>
+
+<div id="order-refunds-api">
+  ### API de reembolsos de pedidos
+</div>
+
+Se incorporó una gestión integral de reembolsos:
+
+- `POST /orders/{id}/refund` - Procesa reembolsos totales o parciales
+- `GET /orders/{id}/refunds` - Ver el historial de reembolsos
+- Restauración automática del inventario de los artículos reembolsados
+
+<div id="webhook-signature-verification">
+  ### Verificación de la firma del webhook
+</div>
+
+Todos los webhooks ahora incluyen el encabezado `x-plantstore-signature` para verificar la autenticidad del webhook mediante HMAC-SHA256.
+
+<div id="enhancements">
+  ## Mejoras
+</div>
+
+- Se agregó el campo `description` a los objetos de Plant para ofrecer información detallada del producto
+- Ahora es posible etiquetar las direcciones de los clientes (p. ej., «Casa», «Trabajo», «Dirección de regalo»)
+- Se mejoraron los tiempos de respuesta de la API en un 40 % mediante la optimización de la base de datos
+
+<div id="documentation">
+  ## Documentación
+</div>
+
+- Se agregó un nuevo tutorial: "Gestión del inventario de Plant"
+- Se actualizó la guía de configuración de webhooks con ejemplos de verificación de firma
+- Se agregaron ejemplos de código para los SDK de Python, JavaScript y Go

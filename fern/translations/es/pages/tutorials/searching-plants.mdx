@@ -1,0 +1,209 @@
+---
+title: Búsqueda de Plant
+subtitle: Aprende a buscar y filtrar tu catálogo de Plant
+slug: searching-plants
+---
+
+Esta guía muestra cómo buscar Plant en tu catálogo utilizando filtros y etiquetas para encontrar exactamente lo que necesitas.
+
+<div id="using-the-plant-search-api">
+  ## Uso de la API de búsqueda de Plant
+</div>
+
+<Steps>
+  <Step title="Obtén tu clave de API">
+    [Crea una clave de API en tu panel](https://plantstore.com/settings/api-keys), que usarás para autenticar tus solicitudes.
+
+    Guarda la clave de forma segura y pásala al SDK ya sea como una variable de entorno a través de un archivo `.env`, o directamente en la configuración de tu aplicación.
+
+    ```bash title=".env"
+    PLANT_STORE_API_KEY=your_api_key_here
+    ```
+  </Step>
+
+  <Step title="Instalar el SDK">
+    <CodeBlocks>
+      ```bash Python
+      pip install plantstore-sdk
+      pip install python-dotenv
+      ```
+
+      ```bash TypeScript
+      npm install @plantstore/sdk
+      npm install dotenv
+      ```
+
+      ```bash Go
+      go get github.com/plantstore/plantstore-go
+      ```
+    </CodeBlocks>
+  </Step>
+
+  <Step title="Buscar Plantas">
+    Crea un archivo nuevo llamado `search_plants.py`, `search_plants.ts` o `main.go` y agrega el siguiente código:
+
+    <CodeBlocks>
+      ```python Python
+      # search_plants.py
+      import os
+      from dotenv import load_dotenv
+      from plantstore import PlantStoreClient
+
+      load_dotenv()
+
+      client = PlantStoreClient(
+          api_key=os.getenv("PLANT_STORE_API_KEY")
+      )
+
+      # Buscar plantas disponibles
+      plants = client.plants.search(status="available")
+
+      print(f"Se encontraron {len(plants)} plantas disponibles:")
+      for plant in plants[:5]:
+          print(f"- {plant.name} (${plant.price})")
+
+      # Buscar por etiquetas (tags)
+      beginner_plants = client.plants.search(
+          tags=["beginner-friendly", "low-light"]
+      )
+
+      print(f"\nPlantas para principiantes:")
+      for plant in beginner_plants[:3]:
+          print(f"- {plant.name}: {', '.join(plant.tags)}")
+
+      # Obtener una planta específica por ID
+      plant = client.plants.get(plant_id=plants[0].id)
+      print(f"\nDetalles de la planta:")
+      print(f"Nombre: {plant.name}")
+      print(f"Estado: {plant.status}")
+      print(f"Etiquetas: {', '.join(plant.tags)}")
+      ```
+
+      ```typescript TypeScript
+      // search_plants.ts
+      import { PlantStoreClient } from '@plantstore/sdk';
+      import 'dotenv/config';
+
+      const client = new PlantStoreClient({
+        apiKey: process.env.PLANT_STORE_API_KEY
+      });
+
+      async function searchPlants() {
+        // Buscar plantas disponibles
+        const plants = await client.plants.search({
+          status: 'available'
+        });
+
+        console.log(`Se encontraron ${plants.length} plantas disponibles:`);
+        plants.slice(0, 5).forEach(plant => {
+          console.log(`- ${plant.name} ($${plant.price})`);
+        });
+
+        // Buscar por etiquetas (tags)
+        const beginnerPlants = await client.plants.search({
+          tags: ['beginner-friendly', 'low-light']
+        });
+
+        console.log('\nPlantas para principiantes:');
+        beginnerPlants.slice(0, 3).forEach(plant => {
+          console.log(`- ${plant.name}: ${plant.tags.join(', ')}`);
+        });
+
+        // Obtener una planta específica por ID
+        const plant = await client.plants.get({
+          plantId: plants[0].id
+        });
+
+        console.log('\nDetalles de la planta:');
+        console.log(`Nombre: ${plant.name}`);
+        console.log(`Estado: ${plant.status}`);
+        console.log(`Etiquetas: ${plant.tags.join(', ')}`);
+      }
+
+      searchPlants();
+      ```
+
+      ```go Go
+      // main.go
+      package main
+
+      import (
+          "fmt"
+          "log"
+          "os"
+          "strings"
+
+          "github.com/joho/godotenv"
+          "github.com/plantstore/plantstore-go"
+      )
+
+      func main() {
+          godotenv.Load()
+
+          client := plantstore.NewClient(
+              plantstore.WithAPIKey(os.Getenv("PLANT_STORE_API_KEY")),
+          )
+
+          // Buscar plantas disponibles
+          plants, err := client.Plants.Search(&plantstore.PlantSearchRequest{
+              Status: "available",
+          })
+          if err != nil {
+              log.Fatal(err)
+          }
+
+          fmt.Printf("Se encontraron %d plantas disponibles:\n", len(plants))
+          for i := 0; i < 5 && i < len(plants); i++ {
+              fmt.Printf("- %s ($%.2f)\n", plants[i].Name, plants[i].Price)
+          }
+
+          // Buscar por etiquetas (tags)
+          beginnerPlants, err := client.Plants.Search(&plantstore.PlantSearchRequest{
+              Tags: []string{"beginner-friendly", "low-light"},
+          })
+          if err != nil {
+              log.Fatal(err)
+          }
+
+          fmt.Println("\nPlantas para principiantes:")
+          for i := 0; i < 3 && i < len(beginnerPlants); i++ {
+              fmt.Printf("- %s: %s\n",
+                  beginnerPlants[i].Name,
+                  strings.Join(beginnerPlants[i].Tags, ", "))
+          }
+
+          // Obtener una planta específica por ID
+          plant, err := client.Plants.Get(&plantstore.PlantGetRequest{
+              PlantID: plants[0].ID,
+          })
+          if err != nil {
+              log.Fatal(err)
+          }
+
+          fmt.Println("\nDetalles de la planta:")
+          fmt.Printf("Nombre: %s\n", plant.Name)
+          fmt.Printf("Estado: %s\n", plant.Status)
+          fmt.Printf("Etiquetas: %s\n", strings.Join(plant.Tags, ", "))
+      }
+      ```
+    </CodeBlocks>
+  </Step>
+
+  <Step title="Ejecuta el código">
+    <CodeBlocks>
+      ```bash Python
+      python search_plants.py
+      ```
+
+      ```bash TypeScript
+      npx tsx search_plants.ts
+      ```
+
+      ```bash Go
+      go run main.go
+      ```
+    </CodeBlocks>
+
+    Deberías ver una lista de Plantas disponibles, opciones para principiantes y información detallada sobre una Planta específica.
+  </Step>
+</Steps>
